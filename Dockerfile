@@ -15,7 +15,9 @@ RUN apt-get update && \
     curl \
     sudo \
     swig \
-    python-dev
+    python-dev \
+    language-pack-ja-base \
+    language-pack-ja
 
 # MeCabをインストール
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
@@ -50,7 +52,6 @@ RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_
     ldconfig
 
 # Ubuntuの日本語化
-RUN apt-get install language-pack-ja-base language-pack-ja && \
-    locale-gen ja_JP.UTF-8 && \
+RUN locale-gen ja_JP.UTF-8 && \
     echo export LANG=ja_JP.UTF-8 >> ~/.profile && \
     source ~/.profile
