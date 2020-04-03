@@ -21,14 +21,15 @@ RUN apt-get update && \
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd -y -n && \
     echo "dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd" > /etc/mecabrc && \
-    pip3 install mecab-python3 && \
-    curl -L -o CRF++-0.58.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ" && \
+    pip3 install mecab-python3
+
+# CRF++をインストール
+RUN curl -L -o CRF++-0.58.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ" && \
     tar zxfv CRF++-0.58.tar.gz && \
     cd CRF++-0.58 && \
     ./configure && \
     make && \
-    make install && \
-    cd ..
+    make install
 
 # CaboChaをインストール
 RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_ID}" > /dev/null && \
