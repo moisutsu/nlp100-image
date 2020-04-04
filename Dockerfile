@@ -15,7 +15,7 @@ RUN apt-get update && \
     curl \
     sudo \
     swig \
-    python-dev \
+    python3-dev \
     language-pack-ja-base \
     language-pack-ja
 
