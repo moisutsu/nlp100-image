@@ -52,6 +52,5 @@ RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_
     ldconfig
 
 # Ubuntuの日本語化
-RUN locale-gen ja_JP.UTF-8 && \
-    echo export LANG=ja_JP.UTF-8 >> ~/.profile && \
-    source ~/.profile
+ENV LANG ja_JP.UTF-8
+RUN locale-gen ja_JP.UTF-8
