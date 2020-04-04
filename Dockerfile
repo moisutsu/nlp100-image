@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # GoogleDriveからCaboChaをインストールするために必要な値
 ENV FILE_ID 0B4y35FiV1wh7SDd1Q1dUQkZQaUU
