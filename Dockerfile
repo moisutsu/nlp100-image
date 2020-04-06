@@ -54,3 +54,6 @@ RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_
 # Ubuntuの日本語化
 ENV LANG ja_JP.UTF-8
 RUN locale-gen ja_JP.UTF-8
+
+# Pythonでの必要なライブラリのインストール
+RUN python -m pip install regex
