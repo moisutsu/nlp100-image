@@ -20,11 +20,10 @@ RUN apt-get update && \
     language-pack-ja \
     fonts-noto-cjk
 
-# MeCabをインストール
+# neologd(MeCab用の辞書)をインストール
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd -y -n && \
-    echo "dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd" > /etc/mecabrc && \
-    pip3 install mecab-python3
+    echo "dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd" > /etc/mecabrc
 
 # CRF++をインストール
 RUN curl -L -o CRF++-0.58.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ" && \
@@ -57,7 +56,7 @@ ENV LANG ja_JP.UTF-8
 RUN locale-gen ja_JP.UTF-8
 
 # Pythonでの必要なライブラリのインストール
-RUN python3 -m pip install regex requests numpy matplotlib
+RUN python3 -m pip install mecab-python3 regex requests numpy matplotlib
 
 # matplotlibの日本語化
 RUN echo "font.serif      : Noto Serif CJK JP, DejaVu Serif, DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino" >> /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
