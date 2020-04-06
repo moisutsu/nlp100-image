@@ -4,6 +4,11 @@ FROM ubuntu:20.04
 ENV FILE_ID 0B4y35FiV1wh7SDd1Q1dUQkZQaUU
 ENV FILE_NAME cabocha-0.69.tar.bz2
 
+# 非対話的にライブラリをインストール
+ENV DEBIAN_FRONTEND noninteractive
+
+ENV LANG ja_JP.UTF-8
+
 #必要なライブラリをインストール
 RUN apt-get update && \
     apt-get install -y python3 \
@@ -18,7 +23,8 @@ RUN apt-get update && \
     python3-dev \
     language-pack-ja-base \
     language-pack-ja \
-    fonts-noto-cjk
+    fonts-noto-cjk \
+    graphviz
 
 # neologd(MeCab用の辞書)をインストール
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
@@ -52,14 +58,10 @@ RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_
     ldconfig
 
 # Ubuntuの日本語化
-ENV LANG ja_JP.UTF-8
 RUN locale-gen ja_JP.UTF-8
 
-# Graphvizのインストール
-RUN yes | apt-get install graphviz
-
 # Pythonでの必要なライブラリのインストール
-RUN python3 -m pip install mecab-python3 regex requests numpy matplotlib pydot graphviz
+RUN python3 -m pip install pylint mecab-python3 regex requests numpy matplotlib pydot graphviz
 
 # matplotlibの日本語化
 RUN echo "font.serif      : Noto Serif CJK JP, DejaVu Serif, DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino" >> /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
