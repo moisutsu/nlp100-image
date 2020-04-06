@@ -17,7 +17,8 @@ RUN apt-get update && \
     swig \
     python3-dev \
     language-pack-ja-base \
-    language-pack-ja
+    language-pack-ja \
+    fonts-noto-cjk
 
 # MeCabをインストール
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
@@ -57,3 +58,8 @@ RUN locale-gen ja_JP.UTF-8
 
 # Pythonでの必要なライブラリのインストール
 RUN python3 -m pip install regex requests numpy matplotlib
+
+# matplotlibの日本語化
+RUN echo "font.serif      : Noto Serif CJK JP, DejaVu Serif, DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino" >> /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
+    echo "font.sans-serif : Noto Sans CJK JP, DejaVu Sans, Bitstream Vera Sans, Computer Modern Sans Serif, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif" >> /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
+    rm -rf ~/.cache/matplotlib
