@@ -56,4 +56,4 @@ ENV LANG ja_JP.UTF-8
 RUN locale-gen ja_JP.UTF-8
 
 # Pythonでの必要なライブラリのインストール
-RUN python -m pip install regex requests
+RUN python3 -m pip install regex requests
