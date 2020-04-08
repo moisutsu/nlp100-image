@@ -24,7 +24,9 @@ RUN apt-get update && \
     language-pack-ja-base \
     language-pack-ja \
     fonts-noto-cjk \
-    graphviz
+    graphviz \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # neologd(MeCab用の辞書)をインストール
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
