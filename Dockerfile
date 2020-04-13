@@ -63,7 +63,7 @@ RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_
 RUN locale-gen ja_JP.UTF-8
 
 # Pythonでの必要なライブラリのインストール
-RUN python3 -m pip install pylint mecab-python3 regex requests numpy matplotlib pydot graphviz gensim jupyterlab nltk
+RUN python3 -m pip install pylint mecab-python3 regex requests numpy matplotlib pydot graphviz gensim jupyterlab nltk scikit-learn
 
 # matplotlibの日本語化
 RUN echo "font.serif      : Noto Serif CJK JP, DejaVu Serif, DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino" >> /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
